@@ -21,3 +21,16 @@ after_success:
   - docker push ian90/docker-frontend
   - docker push ian90/docker-backend
   - docker push ian90/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: EB에 생성된 어플리케이션의 이름
+  env: EB에 생성된 환경이름
+  bucket_name: 해당 elasticbeanstalk를 위한 s3 버켓 이름
+  bucket_path: 어플리케이션 이름과 동일
+  on:
+    branch: master
+
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_ACCESS_KEY
